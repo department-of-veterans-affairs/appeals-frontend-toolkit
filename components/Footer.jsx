@@ -20,7 +20,8 @@ const barStyling = css({
 
 export default class Footer extends React.Component {
   onFeedbackClick = () => {
-    window.analyticsEvent(this.props.appName, 'feedback', 'footer');
+    window.analyticsEvent(this.props.appName, 'feedback', 
+      `${window.location.pathname} - footer`);
   }
 
   render() {
@@ -30,6 +31,8 @@ export default class Footer extends React.Component {
     } = this.props;
 
     const statusPage = 'https://caseflow.statuspage.io';
+
+    console.log("location");
 
     return <footer className="cf-app-footer" {...footerStyles}>
       <div {...getAppWidthStyling(wideApp)}>
@@ -51,5 +54,6 @@ export default class Footer extends React.Component {
 Footer.propTypes = {
   appName: PropTypes.string.isRequired,
   buildDate: PropTypes.string,
-  feedbackUrl: PropTypes.string.isRequired
+  feedbackUrl: PropTypes.string.isRequired,
+  onClick: PropTypes.func
 };
